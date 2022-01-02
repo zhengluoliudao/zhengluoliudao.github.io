@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL专题 | 风连广宇的萌萌哒小博客</title><meta name="keywords" content="DataBase,SQL"><meta name="author" content="momentum"><meta name="copyright" content="momentum"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SQL专题#1 SQL1 插入记录（一）牛客后台会记录每个用户的试卷作答记录到exam_record表，现在有两个用户的作答记录详情如下：  用户1001在2021年9月1日晚上10点11分12秒开始作答试卷9001，并在50分钟后提交，得了90分； 用户1002在2021年9月4日上午7点1分2秒开始作答试卷9002，并在10分钟后退出了平台。  试卷作答记录表exam_record中，表已建好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL专题">
+<meta property="og:url" content="https://zhengluoliudao.github.io/2022/01/02/SQL%E4%B8%93%E9%A2%98/index.html">
+<meta property="og:site_name" content="风连广宇的萌萌哒小博客">
+<meta property="og:description" content="SQL专题#1 SQL1 插入记录（一）牛客后台会记录每个用户的试卷作答记录到exam_record表，现在有两个用户的作答记录详情如下：  用户1001在2021年9月1日晚上10点11分12秒开始作答试卷9001，并在50分钟后提交，得了90分； 用户1002在2021年9月4日上午7点1分2秒开始作答试卷9002，并在10分钟后退出了平台。  试卷作答记录表exam_record中，表已建好">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2022-01-02T09:47:49.000Z">
+<meta property="article:modified_time" content="2022-01-02T09:48:33.693Z">
+<meta property="article:author" content="momentum">
+<meta property="article:tag" content="DataBase">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhengluoliudao.github.io/2022/01/02/SQL%E4%B8%93%E9%A2%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SQL专题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-02 17:48:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="风连广宇的萌萌哒小博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">风连广宇的萌萌哒小博客</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SQL专题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-02T09:47:49.000Z" title="Created 2022-01-02 17:47:49">2022-01-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-01-02T09:48:33.693Z" title="Updated 2022-01-02 17:48:33">2022-01-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SQL专题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="SQL专题"><a href="#SQL专题" class="headerlink" title="SQL专题"></a>SQL专题</h2><h4 id="1-SQL1-插入记录（一）"><a href="#1-SQL1-插入记录（一）" class="headerlink" title="#1 SQL1 插入记录（一）"></a>#1 <strong>SQL1</strong> <strong>插入记录（一）</strong></h4><p>牛客后台会记录每个用户的试卷作答记录到exam_record表，现在有两个用户的作答记录详情如下：</p>
+<ul>
+<li>用户1001在2021年9月1日晚上10点11分12秒开始作答试卷9001，并在50分钟后提交，得了90分；</li>
+<li>用户1002在2021年9月4日上午7点1分2秒开始作答试卷9002，并在10分钟后退出了平台。</li>
+</ul>
+<p>试卷作答记录表exam_record中，表已建好，其结构如下，请用一条语句将这两条记录插入表中。</p>
+<p>该题最后会通过执行SELECT uid, exam_id, start_time, submit_time, score FROM exam_record;来对比结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">insert into exam_record</span><br><span class="line">VALUES (null,1001,9001,&#x27;2021-09-01 22:11:12&#x27;,&#x27;2021-09-01 22:11:12&#x27; +INTERVAL 50 minute,90),</span><br><span class="line">(null,1002,9002,&#x27;2021-09-04 07:01:02&#x27;,null,NULL);</span><br><span class="line"></span><br><span class="line"># 或者</span><br><span class="line">insert into exam_record(uid, exam_id, start_time, submit_time, score)</span><br><span class="line">values </span><br><span class="line">(1001, 9001, &#x27;2021-09-01 22:11:12&#x27;, &#x27;2021-09-01 23:01:12&#x27;, 90),</span><br><span class="line">(1002, 9002, &#x27;2021-09-04 07:01:02&#x27;, null, null)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-SQL2-插入记录（二）"><a href="#2-SQL2-插入记录（二）" class="headerlink" title="#2 SQL2 插入记录（二）"></a>#2 <strong>SQL2</strong> <strong>插入记录（二）</strong></h4><p>现有一张试卷作答记录表exam_record，结构如下表，其中包含多年来的用户作答试卷记录，由于数据越来越多，维护难度越来越大，需要对数据表内容做精简，历史数据做备份。</p>
+<p>我们已经创建了一张新表exam_record_before_2021用来备份2021年之前的试题作答记录，结构和exam_record表一致，请将2021年之前的已完成了的试题作答纪录导入到该表。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into exam_record_before_2021(uid, exam_id, start_time, submit_time, score) </span><br><span class="line">select uid, exam_id, start_time, submit_time, score from exam_record</span><br><span class="line">where year(start_time) &lt; 2021 and submit_time is not null</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-SQL3-插入记录（三）"><a href="#3-SQL3-插入记录（三）" class="headerlink" title="#3 SQL3 插入记录（三）"></a>#3 SQL3 插入记录（三）</h4><p>现在有一套ID为9003的高难度SQL试卷，时长为一个半小时，请你将 2021-01-01 00:00:00 作为发布时间插入到试题信息表examination_info（其表结构如下图），不管该ID试卷是否存在，都要插入成功，请尝试插入它。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 使用replace <span class="keyword">into</span> 而不是 <span class="keyword">insert</span> <span class="keyword">into</span>，因为无论存在与否，也可以先删除再插入</span><br><span class="line">replace <span class="keyword">into</span> examination_info(exam_id, tag, difficulty, duration, release_time)</span><br><span class="line"><span class="keyword">values</span> </span><br><span class="line">(<span class="number">9003</span>, <span class="string">&#x27;SQL&#x27;</span>, <span class="string">&#x27;hard&#x27;</span>,<span class="number">90</span> ,<span class="string">&#x27;2021-01-01 00:00:00&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-SQL4-更新记录（一）"><a href="#4-SQL4-更新记录（一）" class="headerlink" title="#4 SQL4 更新记录（一）"></a>#4 <strong>SQL4</strong> <strong>更新记录（一）</strong></h4><p>请把examination_info表中tag为PYTHON的tag字段全部修改为Python。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update examination_info</span><br><span class="line"><span class="keyword">set</span> tag <span class="operator">=</span> <span class="string">&#x27;Python&#x27;</span></span><br><span class="line"><span class="keyword">where</span> tag <span class="operator">=</span> <span class="string">&#x27;PYTHON&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-SQL5-更新记录（二）"><a href="#5-SQL5-更新记录（二）" class="headerlink" title="#5 SQL5 更新记录（二）"></a>#5 <strong>SQL5</strong> <strong>更新记录（二）</strong></h4><p>请把exam_record表中2021年9月1日之前开始作答的未完成记录全部改为被动完成，即：将完成时间改为’2099-01-01 00:00:00’，分数改为0。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">update exam_record </span><br><span class="line">set score = 0 ,</span><br><span class="line"># 条件语句里才有and，其他并列成分用，分隔</span><br><span class="line">    submit_time = &#x27;2099-01-01 00:00:00&#x27;</span><br><span class="line">where start_time &lt; &#x27;2021-09-01 00:00:00&#x27; and submit_time is null</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-SQL6-删除记录（一）"><a href="#6-SQL6-删除记录（一）" class="headerlink" title="#6 SQL6 删除记录（一）"></a>#6 <strong>SQL6</strong> <strong>删除记录（一）</strong></h4><p>请删除exam_record表中作答时间小于5分钟整且分数不及格（及格线为60分）的记录；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">delete from exam_record </span><br><span class="line">where  timestampdiff(minute, start_time, submit_time) &lt; 5 and score &lt; 60</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="7-SQL7-删除记录（二）"><a href="#7-SQL7-删除记录（二）" class="headerlink" title="#7 SQL7 删除记录（二）"></a>#7 <strong>SQL7</strong> <strong>删除记录（二）</strong></h4><p>请删除exam_record表中未完成作答或作答时间小于5分钟整的记录中，开始作答时间最早的3条记录。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">delete from exam_record</span><br><span class="line">where timestampdiff(minute, start_time, submit_time) &lt; 5 or submit_time is NULL</span><br><span class="line">order by start_time</span><br><span class="line">limit 3</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-SQL8-删除记录（三）"><a href="#8-SQL8-删除记录（三）" class="headerlink" title="#8 SQL8 删除记录（三）"></a>#8 <strong>SQL8</strong> <strong>删除记录（三）</strong></h4><p>请删除exam_record表中所有记录，并重置自增主键。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#truncate table 在功能上，与不带where字句的delete语句相同；二者均删除表中的全部行，但truncate table 比delete速度更快，且#使用的系统和事务日志资源少。 truncate 删除表中的所有行，但表的结构及其列，约束，索引等保持不变。新行标识所用的计数值重置为该列</span><br><span class="line">#的种子。如果想保留标识计数值，请使用delete 。如果要删除表定义及其数据，请使用drop table 语句。</span><br><span class="line">truncate table exam_record</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-SQL9-创建一张新表"><a href="#9-SQL9-创建一张新表" class="headerlink" title="#9 SQL9 创建一张新表"></a>#9 <strong>SQL9</strong> <strong>创建一张新表</strong></h4><p>请<strong>创建一张优质用户信息表user_info_vip</strong>，表结构和用户信息表一致。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 注意default charset，default值，not null unique</span><br><span class="line">create table user_info_vip(</span><br><span class="line">    id int(11) primary key auto_increment comment &#x27;自增ID&#x27;,</span><br><span class="line">    uid int(11) not null unique comment &#x27;用户ID&#x27;,</span><br><span class="line">    nick_name varchar(64) comment &#x27;昵称&#x27;,</span><br><span class="line">    achievement int(11) default 0 comment &#x27;成就值&#x27;,</span><br><span class="line">    level int(11) comment &#x27;用户等级&#x27;,</span><br><span class="line">    job varchar(32) comment &#x27;职业方向&#x27;,</span><br><span class="line">    register_time datetime default current_timestamp comment &#x27;注册时间&#x27;</span><br><span class="line">)default charset = utf8</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-SQL10-修改表"><a href="#10-SQL10-修改表" class="headerlink" title="#10 SQL10 修改表"></a>#10 <strong>SQL10</strong> <strong>修改表</strong></h4><p>请在用户信息表，字段level的后面增加一列最多可保存15个汉字的字段school；并将表中job列名改为profession，achievement的默认值设置为0。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alter table user_info add school varchar(15) after level;</span><br><span class="line">alter table user_info change job profession varchar(10);</span><br><span class="line">alter table user_info modify achievement int(11) default 0;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="11-SQL11-删除表"><a href="#11-SQL11-删除表" class="headerlink" title="#11 SQL11 删除表"></a>#11 <strong>SQL11</strong> <strong>删除表</strong></h4><p>现在随着数据越来越多，存储告急，请你把很久前的（2011到2014年）备份表都删掉（如果存在的话）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists exam_record_2011,</span><br><span class="line">                     exam_record_2012,</span><br><span class="line">                     exam_record_2013,</span><br><span class="line">                     exam_record_2014</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="12-SQL12-创建索引"><a href="#12-SQL12-创建索引" class="headerlink" title="#12 SQL12 创建索引"></a>#12 <strong>SQL12</strong> <strong>创建索引</strong></h4><p>现有一张试卷信息表examination_info，其中包含各种类型试卷的信息。为了对表更方便快捷地查询，需要在examination_info表创建以下索引，规则如下：</p>
+<p>在duration列创建普通索引idx_duration、在exam_id列创建唯一性索引uniq_idx_exam_id、在tag列创建全文索引full_idx_tag。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create index idx_duration </span><br><span class="line">    on examination_info (duration);</span><br><span class="line">create unique index uniq_idx_exam_id </span><br><span class="line">    on examination_info (exam_id);</span><br><span class="line">create fulltext index full_idx_tag </span><br><span class="line">    on examination_info (tag);</span><br><span class="line">    </span><br><span class="line"># 也可以用alter修改表格</span><br><span class="line">alter table examination_info add index idx_duration(duration);</span><br><span class="line">alter table examination_info add unique index uniq_idx_exam_id(exam_id); </span><br><span class="line">alter table examination_info add fulltext index full_idx_tag(tag);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="13-SQL13-删除索引"><a href="#13-SQL13-删除索引" class="headerlink" title="#13 SQL13 删除索引"></a>#13 <strong>SQL13</strong> <strong>删除索引</strong></h4><p>请删除examination_info表上的唯一索引uniq_idx_exam_id和全文索引full_idx_tag。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">drop index uniq_idx_exam_id on examination_info;</span><br><span class="line">drop index full_idx_tag on examination_info;</span><br><span class="line"></span><br><span class="line">#或者</span><br><span class="line">alter table examination_info  drop  index uniq_idx_exam_id;</span><br><span class="line">alter table examination_info drop  index full_idx_tag;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="14-SQL14-SQL类别高难度试卷得分的截断平均值"><a href="#14-SQL14-SQL类别高难度试卷得分的截断平均值" class="headerlink" title="#14 SQL14 SQL类别高难度试卷得分的截断平均值"></a>#14 <strong>SQL14</strong> <strong>SQL类别高难度试卷得分的截断平均值</strong></h4><p>牛客的运营同学想要查看大家在SQL类别中高难度试卷的得分情况。</p>
+<p>请你帮她从exam_record数据表中计算所有用户完成SQL类别高难度试卷得分的截断平均值（去掉一个最大值和一个最小值后的平均值）。保留一位小数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select ei.tag, ei.difficulty, round((sum(er.score) - max(er.score) - min(er.score))/(count(er.score)-2), 1)</span><br><span class="line">from </span><br><span class="line">examination_info ei join exam_record er</span><br><span class="line">on ei.exam_id = er.exam_id</span><br><span class="line">where </span><br><span class="line">ei.tag = &#x27;SQL&#x27; and ei.difficulty = &#x27;hard&#x27; and er.score is not null</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="15-SQL15-统计作答次数"><a href="#15-SQL15-统计作答次数" class="headerlink" title="#15 SQL15 统计作答次数"></a>#15 <strong>SQL15</strong> <strong>统计作答次数</strong></h4><p>有一个试卷作答记录表exam_record，请从中统计出总作答次数total_pv、试卷已完成作答数complete_pv、已完成的试卷数complete_exam_cnt。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">count(id) total_pv, </span><br><span class="line">count(score) complete_pv, </span><br><span class="line"># 可以添加条件语句，用and连接</span><br><span class="line">count(distinct exam_id and score is not null) complete_exam_cnt</span><br><span class="line">from exam_record</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="16-SQL16-得分不小于平均分的最低分"><a href="#16-SQL16-得分不小于平均分的最低分" class="headerlink" title="#16 SQL16 得分不小于平均分的最低分"></a>#16 <strong>SQL16</strong> <strong>得分不小于平均分的最低分</strong></h4><p>请从试卷作答记录表中找到SQL试卷得分不小于该类试卷平均得分的用户最低得分。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select min(er.score) min_score_over_avg</span><br><span class="line">from </span><br><span class="line">exam_record er join examination_info ei on er.exam_id = ei.exam_id</span><br><span class="line">where ei.tag = &#x27;SQL&#x27; and er.score &gt;= </span><br><span class="line">(</span><br><span class="line">select avg(score) from </span><br><span class="line">exam_record a join examination_info b on a.exam_id = b.exam_id</span><br><span class="line">where b.tag = &#x27;SQL&#x27;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="17-SQL17-平均活跃天数和月活人数"><a href="#17-SQL17-平均活跃天数和月活人数" class="headerlink" title="#17 SQL17 平均活跃天数和月活人数"></a>#17 <strong>SQL17</strong> <strong>平均活跃天数和月活人数</strong></h4><p>请计算2021年每个月里试卷作答区用户平均月活跃天数avg_active_days和月度活跃人数mau</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 注意，%Y是2021，%y是21， %M是July, %m是07, date_format可以按需求提取时间</span><br><span class="line">select  date_format(start_time, &#x27;%Y%m&#x27;) month,</span><br><span class="line"># count(a,b)按照两个参数都不同的进行统计数量，不要忘了distinct</span><br><span class="line">round(count(distinct uid, date_format(start_time, &#x27;%Y%m%d&#x27;))/count(distinct uid), 2) avg_active_days, </span><br><span class="line">count(distinct uid) mau</span><br><span class="line">from exam_record</span><br><span class="line">where </span><br><span class="line">submit_time is not null</span><br><span class="line">and year(submit_time) = 2021 </span><br><span class="line"># group by不要和order by弄混了</span><br><span class="line">group by date_format(start_time, &#x27;%Y%m&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="18-SQL18-月总刷题数和日均刷题数"><a href="#18-SQL18-月总刷题数和日均刷题数" class="headerlink" title="#18 SQL18 月总刷题数和日均刷题数"></a>#18 <strong>SQL18</strong> <strong>月总刷题数和日均刷题数</strong></h4><p>请从中统计出2021年每个月里用户的月总刷题数month_q_cnt 和日均刷题数avg_day_q_cnt，以及该年的总体情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select  coalesce(DATE_FORMAT(submit_time, &#x27;%Y%m&#x27;), &quot;2021汇总&quot;)  submit_month,</span><br><span class="line">count(score) month_q_cnt, </span><br><span class="line">round(count(score)/max(day(last_day(submit_time))), 3)  avg_day_q_cnt</span><br><span class="line">from practice_record </span><br><span class="line">where year(submit_time) = 2021</span><br><span class="line">group by DATE_FORMAT(submit_time, &#x27;%Y%m&#x27;)</span><br><span class="line">with rollup</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="19-SQL19-未完成试卷数大于1的有效用户"><a href="#19-SQL19-未完成试卷数大于1的有效用户" class="headerlink" title="#19 SQL19 未完成试卷数大于1的有效用户"></a>#19 <strong>SQL19</strong> <strong>未完成试卷数大于1的有效用户</strong></h4><p>请统计2021年每个未完成试卷作答数大于1的有效用户的数据（有效用户指完成试卷作答数至少为1且未完成数小于5），输出用户ID、未完成试卷作答数、完成试卷作答数、作答过的试卷tag集合，按未完成试卷数量由多到少排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">select uid,</span><br><span class="line">       count(if(submit_time is null,1,null)) as incomplete_cnt,</span><br><span class="line">       count(if(submit_time is not null,1,null)) as complete_cnt,</span><br><span class="line">       group_concat(distinct concat_ws(&#x27;:&#x27;,date(start_time),tag) separator &#x27;;&#x27;) as detail</span><br><span class="line">from exam_record a</span><br><span class="line">left join examination_info b</span><br><span class="line">on a.exam_id=b.exam_id</span><br><span class="line">where year(start_time)=2021</span><br><span class="line">group by uid</span><br><span class="line">having  (count(if(submit_time is null,1,null)) between 2 and 4)</span><br><span class="line">and (count(if(submit_time is not null,1,null)) &gt;= 1)</span><br><span class="line">order by incomplete_cnt desc;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="20-SQL20-月均完成试卷数不小于3的用户爱作答的类别"><a href="#20-SQL20-月均完成试卷数不小于3的用户爱作答的类别" class="headerlink" title="#20 SQL20 月均完成试卷数不小于3的用户爱作答的类别"></a>#20 <strong>SQL20</strong> <strong>月均完成试卷数不小于3的用户爱作答的类别</strong></h4><p>请从表中统计出 月均完成试卷数不小于3的用户爱作答的类别及作答次数，按次数降序输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">tag, </span><br><span class="line">count(tag) tag_cnt</span><br><span class="line">from </span><br><span class="line">exam_record er join examination_info ei</span><br><span class="line">on er.exam_id = ei.exam_id</span><br><span class="line">where uid in </span><br><span class="line">(</span><br><span class="line">select uid from exam_record </span><br><span class="line">    where submit_time is not null</span><br><span class="line">    group by uid</span><br><span class="line">    having count(*)/count(distinct date_format(start_time, &#x27;%Y%m&#x27;)) &gt;= 3</span><br><span class="line">)</span><br><span class="line">group by tag </span><br><span class="line">order by tag_cnt desc </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="21-SQL21-试卷发布当天作答人数和平均分"><a href="#21-SQL21-试卷发布当天作答人数和平均分" class="headerlink" title="#21 SQL21 试卷发布当天作答人数和平均分"></a>#21 <strong>SQL21</strong> <strong>试卷发布当天作答人数和平均分</strong></h4><p>请计算每张SQL类别试卷发布后，当天5级以上的用户作答的人数uv和平均分avg_score，按人数降序，相同人数的按平均分升序，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">select er.exam_id, </span><br><span class="line">count(distinct er.uid) uv, </span><br><span class="line">round(avg(er.score), 1) avg_score</span><br><span class="line">from examination_info ei join exam_record er </span><br><span class="line">on ei.exam_id = er.exam_id</span><br><span class="line">where er.uid in </span><br><span class="line">(</span><br><span class="line">select uid from user_info </span><br><span class="line">    where level &gt; 5</span><br><span class="line">) and ei.tag = &#x27;SQL&#x27;</span><br><span class="line">and DATE_FORMAT(ei.release_time, &#x27;%Y%m%d&#x27;) = DATE_FORMAT(er.submit_time, &#x27;%Y%m%d&#x27;)</span><br><span class="line"># group by即分组，之后的count等聚集操作在每组内进行，即每个</span><br><span class="line">group by er.exam_id</span><br><span class="line">order by uv desc, avg_score</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="22-SQL22-作答试卷得分大于过80的人的用户等级分布"><a href="#22-SQL22-作答试卷得分大于过80的人的用户等级分布" class="headerlink" title="#22 SQL22 作答试卷得分大于过80的人的用户等级分布"></a>#22 <strong>SQL22</strong> <strong>作答试卷得分大于过80的人的用户等级分布</strong></h4><p>统计作答SQL类别的试卷得分大于过80的人的用户等级分布，按数量降序排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">select u_i.level, </span><br><span class="line">count(distinct u_i.uid )  level_cnt  </span><br><span class="line">from exam_record e_r join examination_info e_i </span><br><span class="line">on e_r.exam_id = e_i.exam_id </span><br><span class="line">join user_info u_i </span><br><span class="line">on e_r.uid = u_i.uid </span><br><span class="line">where e_i.tag = &#x27;SQL&#x27; </span><br><span class="line">and score &gt; 80 </span><br><span class="line">group by level </span><br><span class="line">order by level_cnt desc, level desc</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="23-SQL23-每个题目和每份试卷被作答的人数和次数"><a href="#23-SQL23-每个题目和每份试卷被作答的人数和次数" class="headerlink" title="#23 SQL23 每个题目和每份试卷被作答的人数和次数"></a>#23 SQL23 每个题目和每份试卷被作答的人数和次数</h4><p>请统计每个题目和每份试卷被作答的人数和次数，分别在试卷区和题目区按uv &amp; pv降序显示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">select * from</span><br><span class="line">(select exam_id as tid,</span><br><span class="line">       count(distinct uid) as uv,</span><br><span class="line">       count(*) as pv</span><br><span class="line">from exam_record</span><br><span class="line">group by exam_id</span><br><span class="line">order by uv desc, pv desc) exam</span><br><span class="line">union</span><br><span class="line">select * from</span><br><span class="line">(select question_id as tid,</span><br><span class="line">       count(distinct uid) as uv,</span><br><span class="line">       count(*) as pv</span><br><span class="line">from practice_record</span><br><span class="line">group by question_id</span><br><span class="line">order by uv desc, pv desc) practice</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="24-SQL24-分别满足两个活动的人"><a href="#24-SQL24-分别满足两个活动的人" class="headerlink" title="#24 SQL24 分别满足两个活动的人"></a>#24 <strong>SQL24</strong> <strong>分别满足两个活动的人</strong></h4><p>为了促进更多用户在牛客平台学习和刷题进步，我们会经常给一些既活跃又表现不错的用户发放福利。假使以前我们有两拨运营活动，分别给每次试卷得分都能到85分的人（activity1）、至少有一次用了一半时间就完成高难度试卷且分数大于80的人（activity2）发了福利券。</p>
+<p>现在，需要你一次性将这两个活动满足的人筛选出来，交给运营同学。请写出一个SQL实现：输出2021年里，所有每次试卷得分都能到85分的人以及至少有一次用了一半时间就完成高难度试卷且分数大于80的人的id和活动号，按用户ID排序输出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">momentum</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://zhengluoliudao.github.io/2022/01/02/SQL%E4%B8%93%E9%A2%98/">https://zhengluoliudao.github.io/2022/01/02/SQL%E4%B8%93%E9%A2%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/DataBase/">DataBase</a><a class="post-meta__tags" href="/tags/SQL/">SQL</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/02/JZ-Offer/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">JZ_Offer</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/02/linux%E5%91%BD%E4%BB%A4/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">linux命令</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/01/02/hello/" title="2020年高级数据库试题"><img class="cover" src="/" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-02</div><div class="title">2020年高级数据库试题</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">momentum</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E4%B8%93%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">SQL专题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SQL1-%E6%8F%92%E5%85%A5%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-number">1.0.1.</span> <span class="toc-text">#1 SQL1 插入记录（一）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-SQL2-%E6%8F%92%E5%85%A5%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-number">1.0.2.</span> <span class="toc-text">#2 SQL2 插入记录（二）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-SQL3-%E6%8F%92%E5%85%A5%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89"><span class="toc-number">1.0.3.</span> <span class="toc-text">#3 SQL3 插入记录（三）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-SQL4-%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-number">1.0.4.</span> <span class="toc-text">#4 SQL4 更新记录（一）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-SQL5-%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-number">1.0.5.</span> <span class="toc-text">#5 SQL5 更新记录（二）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-SQL6-%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-number">1.0.6.</span> <span class="toc-text">#6 SQL6 删除记录（一）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-SQL7-%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-number">1.0.7.</span> <span class="toc-text">#7 SQL7 删除记录（二）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-SQL8-%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89"><span class="toc-number">1.0.8.</span> <span class="toc-text">#8 SQL8 删除记录（三）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-SQL9-%E5%88%9B%E5%BB%BA%E4%B8%80%E5%BC%A0%E6%96%B0%E8%A1%A8"><span class="toc-number">1.0.9.</span> <span class="toc-text">#9 SQL9 创建一张新表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-SQL10-%E4%BF%AE%E6%94%B9%E8%A1%A8"><span class="toc-number">1.0.10.</span> <span class="toc-text">#10 SQL10 修改表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-SQL11-%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-number">1.0.11.</span> <span class="toc-text">#11 SQL11 删除表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-SQL12-%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95"><span class="toc-number">1.0.12.</span> <span class="toc-text">#12 SQL12 创建索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-SQL13-%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="toc-number">1.0.13.</span> <span class="toc-text">#13 SQL13 删除索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-SQL14-SQL%E7%B1%BB%E5%88%AB%E9%AB%98%E9%9A%BE%E5%BA%A6%E8%AF%95%E5%8D%B7%E5%BE%97%E5%88%86%E7%9A%84%E6%88%AA%E6%96%AD%E5%B9%B3%E5%9D%87%E5%80%BC"><span class="toc-number">1.0.14.</span> <span class="toc-text">#14 SQL14 SQL类别高难度试卷得分的截断平均值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-SQL15-%E7%BB%9F%E8%AE%A1%E4%BD%9C%E7%AD%94%E6%AC%A1%E6%95%B0"><span class="toc-number">1.0.15.</span> <span class="toc-text">#15 SQL15 统计作答次数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-SQL16-%E5%BE%97%E5%88%86%E4%B8%8D%E5%B0%8F%E4%BA%8E%E5%B9%B3%E5%9D%87%E5%88%86%E7%9A%84%E6%9C%80%E4%BD%8E%E5%88%86"><span class="toc-number">1.0.16.</span> <span class="toc-text">#16 SQL16 得分不小于平均分的最低分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-SQL17-%E5%B9%B3%E5%9D%87%E6%B4%BB%E8%B7%83%E5%A4%A9%E6%95%B0%E5%92%8C%E6%9C%88%E6%B4%BB%E4%BA%BA%E6%95%B0"><span class="toc-number">1.0.17.</span> <span class="toc-text">#17 SQL17 平均活跃天数和月活人数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-SQL18-%E6%9C%88%E6%80%BB%E5%88%B7%E9%A2%98%E6%95%B0%E5%92%8C%E6%97%A5%E5%9D%87%E5%88%B7%E9%A2%98%E6%95%B0"><span class="toc-number">1.0.18.</span> <span class="toc-text">#18 SQL18 月总刷题数和日均刷题数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-SQL19-%E6%9C%AA%E5%AE%8C%E6%88%90%E8%AF%95%E5%8D%B7%E6%95%B0%E5%A4%A7%E4%BA%8E1%E7%9A%84%E6%9C%89%E6%95%88%E7%94%A8%E6%88%B7"><span class="toc-number">1.0.19.</span> <span class="toc-text">#19 SQL19 未完成试卷数大于1的有效用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-SQL20-%E6%9C%88%E5%9D%87%E5%AE%8C%E6%88%90%E8%AF%95%E5%8D%B7%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8E3%E7%9A%84%E7%94%A8%E6%88%B7%E7%88%B1%E4%BD%9C%E7%AD%94%E7%9A%84%E7%B1%BB%E5%88%AB"><span class="toc-number">1.0.20.</span> <span class="toc-text">#20 SQL20 月均完成试卷数不小于3的用户爱作答的类别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-SQL21-%E8%AF%95%E5%8D%B7%E5%8F%91%E5%B8%83%E5%BD%93%E5%A4%A9%E4%BD%9C%E7%AD%94%E4%BA%BA%E6%95%B0%E5%92%8C%E5%B9%B3%E5%9D%87%E5%88%86"><span class="toc-number">1.0.21.</span> <span class="toc-text">#21 SQL21 试卷发布当天作答人数和平均分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#22-SQL22-%E4%BD%9C%E7%AD%94%E8%AF%95%E5%8D%B7%E5%BE%97%E5%88%86%E5%A4%A7%E4%BA%8E%E8%BF%8780%E7%9A%84%E4%BA%BA%E7%9A%84%E7%94%A8%E6%88%B7%E7%AD%89%E7%BA%A7%E5%88%86%E5%B8%83"><span class="toc-number">1.0.22.</span> <span class="toc-text">#22 SQL22 作答试卷得分大于过80的人的用户等级分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-SQL23-%E6%AF%8F%E4%B8%AA%E9%A2%98%E7%9B%AE%E5%92%8C%E6%AF%8F%E4%BB%BD%E8%AF%95%E5%8D%B7%E8%A2%AB%E4%BD%9C%E7%AD%94%E7%9A%84%E4%BA%BA%E6%95%B0%E5%92%8C%E6%AC%A1%E6%95%B0"><span class="toc-number">1.0.23.</span> <span class="toc-text">#23 SQL23 每个题目和每份试卷被作答的人数和次数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#24-SQL24-%E5%88%86%E5%88%AB%E6%BB%A1%E8%B6%B3%E4%B8%A4%E4%B8%AA%E6%B4%BB%E5%8A%A8%E7%9A%84%E4%BA%BA"><span class="toc-number">1.0.24.</span> <span class="toc-text">#24 SQL24 分别满足两个活动的人</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/JZ-Offer/" title="JZ_Offer"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JZ_Offer"/></a><div class="content"><a class="title" href="/2022/01/02/JZ-Offer/" title="JZ_Offer">JZ_Offer</a><time datetime="2022-01-02T09:49:40.000Z" title="Created 2022-01-02 17:49:40">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/SQL%E4%B8%93%E9%A2%98/" title="SQL专题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SQL专题"/></a><div class="content"><a class="title" href="/2022/01/02/SQL%E4%B8%93%E9%A2%98/" title="SQL专题">SQL专题</a><time datetime="2022-01-02T09:47:49.000Z" title="Created 2022-01-02 17:47:49">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/linux%E5%91%BD%E4%BB%A4/" title="linux命令"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux命令"/></a><div class="content"><a class="title" href="/2022/01/02/linux%E5%91%BD%E4%BB%A4/" title="linux命令">linux命令</a><time datetime="2022-01-02T09:46:55.000Z" title="Created 2022-01-02 17:46:55">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/%E9%9D%A2%E8%AF%95%E9%A1%B9%E7%9B%AE/" title="秒杀项目"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="秒杀项目"/></a><div class="content"><a class="title" href="/2022/01/02/%E9%9D%A2%E8%AF%95%E9%A1%B9%E7%9B%AE/" title="秒杀项目">秒杀项目</a><time datetime="2022-01-02T09:44:48.000Z" title="Created 2022-01-02 17:44:48">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/%E8%85%BE%E8%AE%AF%E9%9D%A2%E8%AF%95/" title="腾讯面试"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="腾讯面试"/></a><div class="content"><a class="title" href="/2022/01/02/%E8%85%BE%E8%AE%AF%E9%9D%A2%E8%AF%95/" title="腾讯面试">腾讯面试</a><time datetime="2022-01-02T09:42:18.000Z" title="Created 2022-01-02 17:42:18">2022-01-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By momentum</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
