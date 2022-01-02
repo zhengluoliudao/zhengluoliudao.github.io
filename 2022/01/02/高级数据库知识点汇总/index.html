@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>高级数据库知识点汇总 | 风连广宇的萌萌哒小博客</title><meta name="keywords" content="DataBase"><meta name="author" content="momentum"><meta name="copyright" content="momentum"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据模型和概念模型12数据模型：表达数据&#x2F;计算机世界的模型概念模型：表达观念&#x2F;信息世界的模型   ER图1ER图基本概念：实体，属性，联系，关键字   1234567IDEF1X图：独立实体用直角方形框，从属实体用圆角方形框表示独立实体的主关键字没有外键，从属实体的主关键字含有外键标定联系：子实体的实例都是由它与父实体的联系而确定。父实体的主关键字是子实体主关键字的一部分非标定联系：子实体的实例能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级数据库知识点汇总">
+<meta property="og:url" content="https://zhengluoliudao.github.io/2022/01/02/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="风连广宇的萌萌哒小博客">
+<meta property="og:description" content="数据模型和概念模型12数据模型：表达数据&#x2F;计算机世界的模型概念模型：表达观念&#x2F;信息世界的模型   ER图1ER图基本概念：实体，属性，联系，关键字   1234567IDEF1X图：独立实体用直角方形框，从属实体用圆角方形框表示独立实体的主关键字没有外键，从属实体的主关键字含有外键标定联系：子实体的实例都是由它与父实体的联系而确定。父实体的主关键字是子实体主关键字的一部分非标定联系：子实体的实例能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2022-01-02T13:32:53.000Z">
+<meta property="article:modified_time" content="2022-01-02T13:35:22.599Z">
+<meta property="article:author" content="momentum">
+<meta property="article:tag" content="DataBase">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhengluoliudao.github.io/2022/01/02/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '高级数据库知识点汇总',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-02 21:35:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="风连广宇的萌萌哒小博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">风连广宇的萌萌哒小博客</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">高级数据库知识点汇总</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-02T13:32:53.000Z" title="Created 2022-01-02 21:32:53">2022-01-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-01-02T13:35:22.599Z" title="Updated 2022-01-02 21:35:22">2022-01-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="高级数据库知识点汇总"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="数据模型和概念模型"><a href="#数据模型和概念模型" class="headerlink" title="数据模型和概念模型"></a>数据模型和概念模型</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据模型：表达数据/计算机世界的模型</span><br><span class="line">概念模型：表达观念/信息世界的模型</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211124195224828.png" alt="image-20211124195224828"></p>
+<h4 id="ER图"><a href="#ER图" class="headerlink" title="ER图"></a>ER图</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ER图基本概念：实体，属性，联系，关键字</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211124201401352.png" alt="image-20211124201401352"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">IDEF1X图：</span><br><span class="line">独立实体用直角方形框，从属实体用圆角方形框表示</span><br><span class="line">独立实体的主关键字没有外键，从属实体的主关键字含有外键</span><br><span class="line">标定联系：子实体的实例都是由它与父实体的联系而确定。父实体的主关键字是子实体主关键字的一部分</span><br><span class="line">非标定联系：子实体的实例能够被唯一标识而无需依赖与其实体的联系。父实体的主关键字不是子实体的主关键字。</span><br><span class="line">非确定联系：即实体之间的多对多的联系，必须分解为若干个一对多的联系来表达，通过引入相交实体来分解</span><br><span class="line">分类联系：一个实体实例是由一个一般实体实例及多个分类实体实例构成的</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211129145504409.png" alt="image-20211129145504409"></p>
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211129150007952.png" alt="image-20211129150007952"></p>
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211129150203529.png" alt="image-20211129150203529"></p>
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211129150447665.png" alt="image-20211129150447665"></p>
+<h4 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">非平凡函数依赖：X-&gt;Y, Y不属于X</span><br><span class="line">完全/部分函数依赖： X-&gt;Y, X的部分能/不能-&gt;Y</span><br><span class="line">传递函数依赖：若X-&gt;Y, Y-&gt;Z, 且Y不属于X, Y不能-&gt;X, 则x-&gt;Z</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Armstrong公理"><a href="#Armstrong公理" class="headerlink" title="Armstrong公理"></a>Armstrong公理</h4><p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211125221655094.png" alt="image-20211125221655094"></p>
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211125221755033.png" alt="image-20211125221755033"></p>
+<h4 id="属性集闭包"><a href="#属性集闭包" class="headerlink" title="属性集闭包"></a>属性集闭包</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X在R(U,F)上的闭包：X能决定的集合</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="最小覆盖"><a href="#最小覆盖" class="headerlink" title="最小覆盖"></a>最小覆盖</h4><p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211125224439208.png" alt="image-20211125224439208"></p>
+<h4 id="关系模式的范式"><a href="#关系模式的范式" class="headerlink" title="关系模式的范式"></a>关系模式的范式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一范式  属性不可分</span><br><span class="line">第二范式    每个非主属性完全函数依赖于候选键</span><br><span class="line">第三范式    每个非主属性不传递函数依赖于候选键</span><br><span class="line">BCNF       任意主属性都完全函数依赖于候选键</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关系模式分解"><a href="#关系模式分解" class="headerlink" title="关系模式分解"></a>关系模式分解</h4><p>无损连接性，函数依赖保持性</p>
+<h4 id="存储体系回顾"><a href="#存储体系回顾" class="headerlink" title="存储体系回顾"></a>存储体系回顾</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">操作系统对磁盘管理：FAT(文件分配表)+目录+磁盘块     操作系统将文件保存在多个不连续磁盘块，目录/文件夹保存第一个磁盘块编号，FAT表格保存每个磁盘块的下一个磁盘块编号</span><br><span class="line">操作系统对内存管理：内存页对应磁盘块，记录地址=页面+页内偏移量，页面的分配与替换</span><br><span class="line"></span><br><span class="line">磁盘：盘面--磁道--扇区--磁盘块</span><br><span class="line">磁盘读取时间=寻道时间+旋转时间+传输时间</span><br><span class="line">RAID(独立磁盘冗余阵列)技术：</span><br><span class="line">	并行处理：并行读取多个磁盘</span><br><span class="line">	可靠性：奇偶检验与纠错</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211126160757699.png" alt="image-20211126160757699"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">表所占磁盘块的分配方法：连续分配，链接分配，按簇分配，索引分配</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211126192807043.png" alt="image-20211126192807043"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">四种文件组织方法：</span><br><span class="line">	无序记录文件（堆文件）：需要数据库重组</span><br><span class="line">	有序记录文件：对排序字段检索效率高，更新效率低（可以用溢出文件）</span><br><span class="line">	散列文件：查找和更新效率都高</span><br><span class="line">	聚簇文件：将具有相同或相似属性值的记录存放于连续的磁盘簇块中；多表聚簇</span><br><span class="line">	</span><br><span class="line">性能降低：数据库重组</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211127100744041.png" alt="image-20211127100744041"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">稠密索引：索引中包含了主文件对应字段的所有不同值</span><br><span class="line">	候选键的稠密索引   非候选键的稠密索引</span><br><span class="line">稀疏索引：主文件中只有部分记录有索引项对应    ----要求主文件按照索引值顺序存储</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">主索引</span><br><span class="line">辅助索引</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="连接算法"><a href="#连接算法" class="headerlink" title="连接算法"></a>连接算法</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>I/O代价</th>
+<th>可用内存页数要求</th>
+<th>适用条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一趟连接算法</td>
+<td>B(R) + B(S)</td>
+<td>B(S) &lt; M − 1</td>
+<td></td>
+</tr>
+<tr>
+<td>基于元组的嵌套循环连接算法</td>
+<td>T(S)(T(R) + 1)</td>
+<td>M &gt;= 2</td>
+<td></td>
+</tr>
+<tr>
+<td>基于块的嵌套循环连接算法</td>
+<td>B(S) + B(R)B(S)/(M-1)</td>
+<td>M &gt;= 2</td>
+<td></td>
+</tr>
+<tr>
+<td>排序归并连接算法</td>
+<td>3B(R) + 3B(S)</td>
+<td>B(R) + B(S) &lt;= M^2</td>
+<td>有序</td>
+</tr>
+<tr>
+<td>基于哈希的连接算法</td>
+<td>3B(R) + 3B(S)</td>
+<td>B(S) &lt;= (M-1)^2</td>
+<td></td>
+</tr>
+<tr>
+<td>基于索引的连接算法</td>
+<td>B(R) + T(R)T(S)/V(S,Y)   非聚簇索引  B(R) + T(R)B(S)/V(S,Y)   聚簇索引</td>
+<td>M &gt;= 2</td>
+<td>有索引</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如何判断使用哪种算法以及代价：先看R和S的大小是否超过M，超过则一趟连接算法不可用；无索引，则索引连接不可用；无序，则排序归并不可用。优先哈希</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">逻辑查询优化：改写成关系代数表达式（投影操作（选择操作（连接操作）））---尽可能早做选择投影操作</span><br><span class="line">物理查询优化：对不同操作选取不同算法</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211128211339391.png" alt="image-20211128211339391"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">关系代数操作次序交换的等价性：</span><br><span class="line">	连接，笛卡尔积满足交换律    连接和笛卡儿积满足结合律   投影合并律   选择串接律</span><br><span class="line">	选择和投影交换律：若选择操作只涉及投影属性，则可交换顺序</span><br><span class="line">	选择和积的交换律：若选择操作只涉及E1中的属性，则 选择(E1*E2) = 选择(E1)*E2</span><br><span class="line">				   若F1和F2分别只涉及E1和E2，则  选择F1^F2(E1*E2) = 选择F1(E1)*选择F2(E2)</span><br><span class="line">	</span><br><span class="line">优化语法树步骤：</span><br><span class="line">	1. 选择条件拆分</span><br><span class="line">	2. 对每个选择尽可能移动到下方(看条件的属性涉及到几张表，基本可以直接移动到涉及的表上方)</span><br><span class="line">	3. 对每个投影尽可能移动到下方(基本是拆分每个表的投影属性，然后下移)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211128235519219.png" alt="image-20211128235519219"></p>
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211128235657959.png" alt="image-20211128235657959"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">物理查询代价估计</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211129104017060.png" alt="image-20211129104017060"></p>
+<h4 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">冲突条件：两个操作属于不同事务；两个操作涉及相同对象，且至少一个是写</span><br><span class="line">优先图：操作Oi和Oj冲突（Oi在Oj前），则有一条Oi指向Oj的边；优先图无环等价于冲突可串行化调度。</span><br></pre></td></tr></table></figure>
+
+<p>2PL(两阶段锁)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">增长阶段：事务申请锁</span><br><span class="line">萎缩阶段：事务只能释放锁，不能申请</span><br><span class="line">优点：冲突可串行化</span><br><span class="line">缺点：面临级联中止和死锁  </span><br><span class="line"></span><br><span class="line">SS2PL（强两阶段锁）</span><br><span class="line">增长阶段：同2PL</span><br><span class="line">萎缩阶段：事务结束释放所有锁</span><br><span class="line">优点：避免级联中止</span><br><span class="line"></span><br><span class="line">死锁</span><br><span class="line">死锁的形成条件：</span><br><span class="line">	1、互斥条件：一个资源每次只能被一个进程使用；</span><br><span class="line">	2、请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放；</span><br><span class="line">	3、不剥夺条件：进程已获得的资源，在末使用完之前，不能强行剥夺；</span><br><span class="line">	4、循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系；</span><br><span class="line">死锁检测：超时检测，等待图检测</span><br><span class="line">死锁预防：设置优先级</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="故障恢复"><a href="#故障恢复" class="headerlink" title="故障恢复"></a>故障恢复</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">undo：撤销未完成事务对数据库的修改</span><br><span class="line">redo：重做已提交事务对数据库的修改</span><br><span class="line">steal：允许未提交事务所做修改提交到磁盘</span><br><span class="line">froce：事务提交前必须将所做修改提交到磁盘</span><br><span class="line"></span><br><span class="line">NO-Steal+Force     无需undo,redo</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211128185010593.png" alt="image-20211128185010593"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">WAL（预写式日志）：&lt;tid 事务id, O_id 修改对象id, before 修改前值, after 修改后值&gt;</span><br><span class="line">基于WAL的故障恢复</span><br><span class="line">检查点：&lt;BEGIN CHECKPOINT (T1,T2, . . . ,Tn)&gt;    T1到Tn是检查点开始时的未提交未中止事务</span><br><span class="line">故障恢复：redo找提交的，从检查点开始向下找；undo从后往前找未提交的，直到检查点</span><br><span class="line">（只需要从检查点后开始redo）</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211128185711006.png" alt="image-20211128185711006"></p>
+<h4 id="各数据库模型对比"><a href="#各数据库模型对比" class="headerlink" title="各数据库模型对比"></a>各数据库模型对比</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>网状/层次模型</td>
+<td>以图/树为操控手段，以记录型和系型为基本数据结构，维护困难</td>
+</tr>
+<tr>
+<td>关系模型</td>
+<td>以表为操作手段，通过5种基本运算对表操作，使用SQL语句查询，结构简单但是数据表达能力差</td>
+</tr>
+<tr>
+<td>面向对象模型</td>
+<td>以对象为操作手段，使用对象封装技术将复合属性及聚集类型属性封装为对象，使用OQL语句进行查询，可读性强，易于扩展，但是执行速度慢</td>
+</tr>
+<tr>
+<td>XML模型</td>
+<td>多用于描述半结构化数据，将数据的语义格式和数据通过标记和可分词字符串组合成一个元素放在XML文档中，通过Xpath/Xquery语言检索，可以嵌套描述，XML的数据结构是一棵树</td>
+</tr>
+<tr>
+<td>NoSQL模型</td>
+<td>泛指非关系型数据库，有多种存储方式，高性能易扩展</td>
+</tr>
+</tbody></table>
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211129001732627.png" alt="image-20211129001732627"></p>
+<p><img src="/../images/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/image-20211129002255479.png" alt="image-20211129002255479"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">momentum</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://zhengluoliudao.github.io/2022/01/02/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/">https://zhengluoliudao.github.io/2022/01/02/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/DataBase/">DataBase</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/01/02/2020%E5%B9%B4%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E8%80%83%E8%AF%95%E9%A2%98/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">2020年组合数学考试题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/01/02/hello/" title="2020年高级数据库试题"><img class="cover" src="/" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-02</div><div class="title">2020年高级数据库试题</div></div></a></div><div><a href="/2022/01/02/SQL%E4%B8%93%E9%A2%98/" title="SQL专题"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-02</div><div class="title">SQL专题</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">momentum</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">数据模型和概念模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ER%E5%9B%BE"><span class="toc-number">2.</span> <span class="toc-text">ER图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="toc-number">3.</span> <span class="toc-text">函数依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Armstrong%E5%85%AC%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">Armstrong公理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E9%9B%86%E9%97%AD%E5%8C%85"><span class="toc-number">5.</span> <span class="toc-text">属性集闭包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96"><span class="toc-number">6.</span> <span class="toc-text">最小覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%8C%83%E5%BC%8F"><span class="toc-number">7.</span> <span class="toc-text">关系模式的范式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3"><span class="toc-number">8.</span> <span class="toc-text">关系模式分解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E4%BD%93%E7%B3%BB%E5%9B%9E%E9%A1%BE"><span class="toc-number">9.</span> <span class="toc-text">存储体系回顾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">10.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E7%AE%97%E6%B3%95"><span class="toc-number">11.</span> <span class="toc-text">连接算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="toc-number">12.</span> <span class="toc-text">查询优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6"><span class="toc-number">13.</span> <span class="toc-text">并发控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D"><span class="toc-number">14.</span> <span class="toc-text">故障恢复</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94"><span class="toc-number">15.</span> <span class="toc-text">各数据库模型对比</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/" title="高级数据库知识点汇总"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高级数据库知识点汇总"/></a><div class="content"><a class="title" href="/2022/01/02/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/" title="高级数据库知识点汇总">高级数据库知识点汇总</a><time datetime="2022-01-02T13:32:53.000Z" title="Created 2022-01-02 21:32:53">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/2020%E5%B9%B4%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E8%80%83%E8%AF%95%E9%A2%98/" title="2020年组合数学考试题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2020年组合数学考试题"/></a><div class="content"><a class="title" href="/2022/01/02/2020%E5%B9%B4%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E8%80%83%E8%AF%95%E9%A2%98/" title="2020年组合数学考试题">2020年组合数学考试题</a><time datetime="2022-01-02T13:30:51.000Z" title="Created 2022-01-02 21:30:51">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/" title="组合数学知识点汇总"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="组合数学知识点汇总"/></a><div class="content"><a class="title" href="/2022/01/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/" title="组合数学知识点汇总">组合数学知识点汇总</a><time datetime="2022-01-02T13:29:43.000Z" title="Created 2022-01-02 21:29:43">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/JZ-Offer/" title="JZ_Offer"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JZ_Offer"/></a><div class="content"><a class="title" href="/2022/01/02/JZ-Offer/" title="JZ_Offer">JZ_Offer</a><time datetime="2022-01-02T09:49:40.000Z" title="Created 2022-01-02 17:49:40">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/SQL%E4%B8%93%E9%A2%98/" title="SQL专题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SQL专题"/></a><div class="content"><a class="title" href="/2022/01/02/SQL%E4%B8%93%E9%A2%98/" title="SQL专题">SQL专题</a><time datetime="2022-01-02T09:47:49.000Z" title="Created 2022-01-02 17:47:49">2022-01-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By momentum</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
